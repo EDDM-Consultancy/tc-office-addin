@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Teamcenter Office add-in manifest (Word + Excel).
+  Replace every https://localhost:3000 with the URL of the add-in server when deploying
+  (e.g. https://tcoffice.yourdomain.local). See README.md.
+-->
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+           xsi:type="TaskPaneApp">
+  <Id>06577f24-aff3-436b-a9da-5aea1a08970b</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>EPCM BV</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Teamcenter" />
+  <Description DefaultValue="Open, save, check out and check in Word and Excel documents in Teamcenter." />
+  <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png" />
+  <SupportUrl DefaultValue="https://localhost:3000/" />
+  <AppDomains>
+    <AppDomain>https://localhost:3000</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Document" />
+    <Host Name="Workbook" />
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://localhost:3000/taskpane.html" />
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="Tc.Group">
+                <Label resid="Tc.GroupLabel" />
+                <Icon>
+                  <bt:Image size="16" resid="Tc.Icon16" />
+                  <bt:Image size="32" resid="Tc.Icon32" />
+                  <bt:Image size="80" resid="Tc.Icon80" />
+                </Icon>
+                <Control xsi:type="Button" id="Tc.OpenPane">
+                  <Label resid="Tc.ButtonLabel" />
+                  <Supertip>
+                    <Title resid="Tc.ButtonLabel" />
+                    <Description resid="Tc.ButtonTip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Tc.Icon16" />
+                    <bt:Image size="32" resid="Tc.Icon32" />
+                    <bt:Image size="80" resid="Tc.Icon80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>TcPane</TaskpaneId>
+                    <SourceLocation resid="Tc.PaneUrl" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+      <Host xsi:type="Workbook">
+        <DesktopFormFactor>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="Tc.GroupX">
+                <Label resid="Tc.GroupLabel" />
+                <Icon>
+                  <bt:Image size="16" resid="Tc.Icon16" />
+                  <bt:Image size="32" resid="Tc.Icon32" />
+                  <bt:Image size="80" resid="Tc.Icon80" />
+                </Icon>
+                <Control xsi:type="Button" id="Tc.OpenPaneX">
+                  <Label resid="Tc.ButtonLabel" />
+                  <Supertip>
+                    <Title resid="Tc.ButtonLabel" />
+                    <Description resid="Tc.ButtonTip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Tc.Icon16" />
+                    <bt:Image size="32" resid="Tc.Icon32" />
+                    <bt:Image size="80" resid="Tc.Icon80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>TcPane</TaskpaneId>
+                    <SourceLocation resid="Tc.PaneUrl" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Tc.Icon16" DefaultValue="https://localhost:3000/assets/icon-16.png" />
+        <bt:Image id="Tc.Icon32" DefaultValue="https://localhost:3000/assets/icon-32.png" />
+        <bt:Image id="Tc.Icon80" DefaultValue="https://localhost:3000/assets/icon-80.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Tc.PaneUrl" DefaultValue="https://localhost:3000/taskpane.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="Tc.GroupLabel" DefaultValue="Teamcenter" />
+        <bt:String id="Tc.ButtonLabel" DefaultValue="Teamcenter" />
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="Tc.ButtonTip" DefaultValue="Open, save, check out and check in this document in Teamcenter." />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

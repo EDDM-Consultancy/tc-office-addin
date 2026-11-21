@@ -1,0 +1,25 @@
+{
+  "server": {
+    "port": 3000,
+    "tcWebUrl": "http://tcserver:7001",
+    "tcContext": "tc",
+    "fscUrl": "http://tcserver:4544",
+    "certFile": "",
+    "keyFile": ""
+  },
+  "client": {
+    "hosts": {
+      "Word":  { "datasetType": "MSWordX",  "namedRef": "word",  "toolUsed": "" },
+      "Excel": { "datasetType": "MSExcelX", "namedRef": "excel", "toolUsed": "" }
+    },
+    "newItemTypes": ["Document", "Item"],
+    "createRelation": "IMAN_specification",
+    "relations": ["IMAN_specification", "TC_Attaches", "IMAN_reference"],
+    "itemQuery": "Item...",
+    "itemQueryIdEntry": "Item ID",
+    "itemQueryNameEntry": "Name",
+    "maxResults": 50,
+    "autoCheckoutOnSave": true,
+    "checkinAfterSaveDefault": false
+  }
+}

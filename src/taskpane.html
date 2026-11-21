@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teamcenter</title>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <script src="/vendor/jszip.min.js"></script>
+  <link rel="stylesheet" href="taskpane.css" />
+  <script type="module" src="taskpane.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand">Teamcenter</div>
+    <div id="who" class="who"></div>
+  </header>
+
+  <div id="msg" class="msg hidden"></div>
+  <div id="busy" class="busy hidden"><span class="spinner"></span><span id="busyText">Working…</span></div>
+
+  <!-- LOGIN -->
+  <section id="loginView" class="hidden">
+    <h2>Sign in</h2>
+    <form id="loginForm">
+      <label>User <input id="user" autocomplete="username" required /></label>
+      <label>Password <input id="password" type="password" autocomplete="current-password" /></label>
+      <label>Group <input id="group" placeholder="(default)" /></label>
+      <label>Role <input id="role" placeholder="(default)" /></label>
+      <button type="submit" class="primary">Sign in</button>
+    </form>
+  </section>
+
+  <!-- MAIN -->
+  <section id="mainView" class="hidden">
+    <nav class="tabs">
+      <button data-tab="doc" class="active">This document</button>
+      <button data-tab="open">Open</button>
+    </nav>
+
+    <!-- THIS DOCUMENT -->
+    <div id="tab-doc" class="tab">
+      <div id="linked" class="hidden card">
+        <div class="label">Linked to Teamcenter dataset</div>
+        <div id="lnName" class="title"></div>
+        <div id="lnItem" class="sub"></div>
+        <div id="lnState" class="state"></div>
+        <label class="check"><input type="checkbox" id="checkinAfter" /> Check in after save</label>
+        <div class="btnrow">
+          <button id="btnSave" class="primary">Save to Teamcenter</button>
+        </div>
+        <div class="btnrow">
+          <button id="btnCheckout">Check out</button>
+          <button id="btnCheckin">Check in</button>
+          <button id="btnCancelCo">Cancel check-out</button>
+        </div>
+        <div class="btnrow small">
+          <button id="btnRefresh" class="link">Refresh status</button>
+          <button id="btnUnlink" class="link">Unlink (save as new instead)</button>
+        </div>
+      </div>
+
+      <div id="unlinked" class="hidden">
+        <p class="hint">This document is not stored in Teamcenter yet.</p>
+        <div class="seg">
+          <label><input type="radio" name="saveMode" value="new" checked /> New item</label>
+          <label><input type="radio" name="saveMode" value="existing" /> Existing item revision</label>
+        </div>
+
+        <div id="saveNew" class="card">
+          <label>Item type <select id="newItemType"></select></label>
+          <label>Item name <input id="newItemName" required /></label>
+          <label>Description <input id="newItemDesc" /></label>
+        </div>
+
+        <div id="saveExisting" class="card hidden">
+          <form id="revSearchForm" class="searchrow">
+            <input id="revSearch" placeholder="Item ID or name (wildcards *)" />
+            <button type="submit">Search</button>
+          </form>
+          <div id="revResults" class="results"></div>
+          <div id="revPicked" class="picked hidden"></div>
+        </div>
+
+        <label>Dataset name <input id="dsName" /></label>
+        <button id="btnSaveNew" class="primary">Save to Teamcenter</button>
+      </div>
+    </div>
+
+    <!-- OPEN -->
+    <div id="tab-open" class="tab hidden">
+      <form id="openSearchForm" class="searchrow">
+        <input id="openSearch" placeholder="Item ID or name (wildcards *)" />
+        <button type="submit">Search</button>
+      </form>
+      <div id="openResults" class="results"></div>
+    </div>
+
+    <footer><button id="btnLogout" class="link">Sign out</button></footer>
+  </section>
+</body>
+</html>

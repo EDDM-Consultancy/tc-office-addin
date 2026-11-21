@@ -1,0 +1,23 @@
+{
+  "name": "tc-office-addin",
+  "version": "1.0.0",
+  "description": "Office (Word/Excel) add-in for Teamcenter 2412: open, save, check-out, check-in",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "mock": "node mock/mock-tc.js",
+    "certs": "npx office-addin-dev-certs install",
+    "validate": "npx office-addin-manifest validate manifest.xml",
+    "test": "node --test test/flow.test.mjs"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.22.3",
+    "http-proxy-middleware": "^3.0.11",
+    "jszip": "^3.10.2"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  }
+}
